@@ -23,11 +23,11 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Build with Maven
-        run: ./mvnw package
+        run: ./mvnw clean install
 
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: pwd ; docker build . --file Dockerfile.jvm --tag load-test-dummy:$(date +%s)
+        run: pwd ; docker build . --file Dockerfile.jvm --progress=plain --tag load-test-dummy:$(date +%s)
 
       - name: Publish Docker
         uses: elgohr/Publish-Docker-Github-Action@v5
